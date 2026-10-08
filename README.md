@@ -168,10 +168,23 @@ pytest -v backend
 
 ## 🐳 Docker Deployment
 
+> **Prerequisite:** [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) must be installed and running.
+
 Run both frontend and backend using Docker Compose:
 
 ```bash
-docker-compose up --build
+docker compose up --build
+```
+*(Or `docker-compose up --build` if using legacy Compose v1)*
+
+To run in the background (detached):
+```bash
+docker compose up -d --build
+```
+
+To stop containers:
+```bash
+docker compose down
 ```
 
 ---
