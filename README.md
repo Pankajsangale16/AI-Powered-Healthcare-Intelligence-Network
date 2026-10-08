@@ -45,59 +45,86 @@ The system migrates the original Streamlit application into a modern, decoupled 
 
 ---
 
-## 💻 Quick Start & Step-by-Step Run Commands
+## 💻 Quick Start: Setup from Scratch on Another Device
 
-Follow these steps to run both the Django backend and React frontend.
+Follow these exact steps to set up and run the project from a fresh state on any computer (Windows, macOS, or Linux).
+
+### Prerequisites:
+- **Python 3.10 or 3.11** installed and added to PATH (`python --version`)
+- **Node.js v18+ or v20+** installed (`node -v` and `npm -v`)
+- **Git** installed (`git --version`)
 
 ---
 
-### Step 1: Backend Setup (Django REST Framework)
+### Step 1: Clone the Repository & Setup Environment
 
-Open a terminal in the root directory: `d:\Project\AI-Powered-Healthcare-Intelligence-Network`
+Open your terminal:
+
+```bash
+# 1. Clone the project repository
+git clone https://github.com/Pankajsangale16/AI-Powered-Healthcare-Intelligence-Network.git
+cd AI-Powered-Healthcare-Intelligence-Network
+
+# 2. Create your .env file from the example template
+# On Windows PowerShell:
+Copy-Item .env.example .env
+# On Windows CMD:
+copy .env.example .env
+# On Linux / macOS:
+cp .env.example .env
+```
+
+> **Important:** Open the newly created `.env` file and add your Groq API key:  
+> `GROQ_API_KEY=gsk_your_key_here`
+
+---
+
+### Step 2: Backend Setup (Python + Django REST Framework)
 
 #### On Windows (PowerShell):
 ```powershell
-# 1. Activate the virtual environment
-# If PowerShell gives a script execution policy error, run:
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+# 1. Create a virtual environment
+python -m venv venv
 
+# 2. Activate the virtual environment
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\venv\Scripts\Activate.ps1
 
-# 2. (First-time only) Apply database migrations
+# 3. Upgrade pip and install all Python dependencies
+python -m pip install --upgrade pip
+pip install -r requirements.txt -c constraints.txt
+
+# 4. Apply database migrations
 python backend\manage.py migrate
 
-# 3. (Optional) Run automated test suite to verify ML model parity
+# 5. (Optional) Run test suite to verify ML models
 pytest -v backend
 
-# 4. Start the Django backend server on port 8000
+# 6. Start the backend server on port 8000
 python backend\manage.py runserver 0.0.0.0:8000
 ```
-> **Tip:** You can also run directly without activating:  
-> `.\venv\Scripts\python.exe backend\manage.py runserver 0.0.0.0:8000`
 
 #### On Windows (Command Prompt - CMD):
 ```cmd
+python -m venv venv
 venv\Scripts\activate.bat
+python -m pip install --upgrade pip
+pip install -r requirements.txt -c constraints.txt
 python backend\manage.py migrate
 python backend\manage.py runserver 0.0.0.0:8000
 ```
 
-#### On Linux / macOS (Bash):
+#### On Linux / macOS:
 ```bash
-# 1. Activate virtual environment
+python3 -m venv venv
 source venv/bin/activate
-
-# 2. Apply database migrations
+pip install --upgrade pip
+pip install -r requirements.txt -c constraints.txt
 python backend/manage.py migrate
-
-# 3. Run test suite
-pytest -v backend
-
-# 4. Start backend server
 python backend/manage.py runserver 0.0.0.0:8000
 ```
 
-*Backend will be running at:* `http://localhost:8000/api/v1/health/`
+*Backend API will be running at:* `http://localhost:8000/api/v1/health/`
 
 ---
 

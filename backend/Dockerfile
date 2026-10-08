@@ -12,8 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY requirements.txt constraints.txt ./
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt -c constraints.txt && \
-    pip install --no-cache-dir django-cors-headers djangorestframework whitenoise
+    pip install --no-cache-dir -r requirements.txt -c constraints.txt
 
 COPY . .
 
