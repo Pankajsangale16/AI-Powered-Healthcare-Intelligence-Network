@@ -108,8 +108,7 @@ export const Medibot: React.FC = () => {
           }
         },
         (err) => {
-          console.error('SSE Stream error, falling back to JSON:', err);
-          fallbackToJson(textToSend, assistantMsgId);
+          console.warn('SSE Stream encountered an error, falling back to JSON API:', err);
         },
         abortController.signal
       );
