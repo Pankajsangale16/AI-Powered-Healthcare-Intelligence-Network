@@ -7,3 +7,11 @@ venv/
 .venv/
 .env
 .git/
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+*.sqlite3
+db.sqlite3
+.pytest_cache/
+**/.pytest_cache/
